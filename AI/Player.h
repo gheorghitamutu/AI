@@ -4,10 +4,12 @@ class Player :
 	public Character
 {
 public:
-	Player(Shape* shapeType) : Character(shapeType) { mSpeed = 100; };
+	Player(Shape* shapeType);
 	void HandleInput(Event event);
 	void checkCollision(vector<Shape*> shapeType);
 	~Player();
 private:
+	bool mShiftPressed = false;
+	float mIncreaseSpeedBy = 1.0f;
 };
 
