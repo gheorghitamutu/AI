@@ -48,6 +48,15 @@ bool Character::intersects(Shape * shapeType)
 			return true;
 		}
 	}
+
+	for (auto& point : mShapePointPosition) //you are  not calculating other objects velocity here!
+	{
+		if (isInside(shapePointPosition, point))
+		{
+			return true;
+		}
+	}
+
 	return false;
 }
 
