@@ -5,25 +5,25 @@
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(1080, 720), "AI");
-	Player p1(new sf::CircleShape(50.f, 4));
+	Event event;
+	Player p1({ new sf::CircleShape(50.f, 3), 50.f });
 
 	EnemyContainer enemies;
 
 	while (window.isOpen())
 	{
-		sf::Event event;
 		while (window.pollEvent(event))
 		{
-			if (event.type == sf::Event::Closed)
+			if (event.type == Event::Closed)
 				window.close();
 		}
 
 		window.clear();
-		p1.checkCollision(enemies.GetShapeType());
 		p1.HandleInput(event);
 		p1.Update();
 		enemies.DrawEnemies(&window);
 		p1.draw(&window);
+		p1.checkCollision(enemies.GetShapeType(), &window);
 		window.display();
 	}
 

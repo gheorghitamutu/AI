@@ -1,12 +1,20 @@
 #include "Player.h"
 
-Player::Player(Shape * shapeType) : Character(shapeType)
+Player::Player(Shape * shapeType, float radius) : MovableShape(shapeType, radius)
 {
 	mSpeed = 100;
 	setFillColor(sf::Color::Green);
-	setOrigin({ getRadius(), getRadius() });
 	setPosition({ (float)(100), (float)(400 / 2) });
+
+	/*for (int i = 0; i < mShapeType->getPointCount(); i++)
+	{
+		Canon* canon = new Canon({ new CircleShape(10.f, 10), 10.f });
+		canon->setFillColor(sf::Color::Cyan);
+		canon->setOrigin({ canon->getRadius(), canon->getRadius() });
+		AddCanon(canon);
+	}*/
 }
+
 
 void Player::HandleInput(Event event)
 {
@@ -44,9 +52,9 @@ void Player::HandleInput(Event event)
 		}
 }
 
-void Player::checkCollision(vector<Shape*> shapeType)
+void Player::checkCollision(vector<Shape*> shapeType, RenderWindow* window)
 {
-	if (intersects(shapeType))
+	if (intersects(shapeType, window))
 	{
 		mCollision = true;
 		mIncreaseSpeedBy = 1.0f;

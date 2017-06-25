@@ -1,15 +1,17 @@
 #pragma once
-#include "Character.h"
+#include "MovableShape.h"
+#include "Canon.h"
+
 class Player :
-	public Character
+	public MovableShape
 {
 public:
-	Player(Shape* shapeType);
+	Player(Shape* shapeType, float radius);
 	void HandleInput(Event event);
-	void checkCollision(vector<Shape*> shapeType);
+	void checkCollision(vector<Shape*> shapeType, RenderWindow* window);
 	~Player();
 private:
-	bool mShiftPressed = false;
 	float mIncreaseSpeedBy = 1.0f;
+	bool mShiftPressed = false;
 };
 

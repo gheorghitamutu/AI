@@ -2,35 +2,39 @@
 #include <SFML/Graphics.hpp>
 #include <utility>
 #include <vector>
-
 using namespace std;
 using namespace sf;
 
-class Character : public CircleShape, public RectangleShape, public ConvexShape
+class MovableShape : public CircleShape, public RectangleShape, public ConvexShape
 {
 public:
-	Character(Shape* shapeType);
-	bool intersects(Shape* shapeType);
-	bool intersects(vector<Shape*> shapeType);
+	MovableShape(Shape* shapeType, float radius);
 	void setFillColor(Color color);
 	void setPosition(Vector2f position);
 	void setOrigin(Vector2f position);
-	float getRadius();
 	void draw(RenderWindow* window);
 	void Update();
 	void SetVelocity(Vector2f direction);
+	void SetSpeed(float speed);
+	void AddCanon(class Canon* canon);
+	float getRadius();
+	bool intersects(Shape* shapeType, RenderWindow* window);
+	bool intersects(vector<Shape*> shapeType, RenderWindow* window);
+	void drawRandomShit(RenderWindow* window, vector<Vector2f> shapePointPosition);
 	Shape* GetShapeType();
-	~Character();
+	~MovableShape();
 
 protected:
+	vector<class Canon*> mCanons;
 	Shape* mShapeType;
-	float mRadius;
 	Vector2f mVelocity;
 	Vector2f mDirection;
-	float mSpeed;
 	sf::Clock time;
 	float mDeltaTime = 0.0f;
+	float mSpeed;
+	float mRadius;
 	bool mCollision = false;
+	const float PI = 3.141592654f;
 private:
 	bool isInside(vector<Vector2f> polygon, Vector2f point);
 	bool doIntersect(Vector2f p1, Vector2f q1, Vector2f p2, Vector2f q2);

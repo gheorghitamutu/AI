@@ -1,10 +1,10 @@
 #pragma once
-#include "Character.h"
+#include "MovableShape.h"
 class Enemy :
-	public Character
+	public MovableShape
 {
 public:
-	Enemy(Shape* shapeType) : Character(shapeType) {};
+	Enemy(Shape* shapeType, float radius) : MovableShape(shapeType, radius) {};
 	~Enemy();
 };
 
