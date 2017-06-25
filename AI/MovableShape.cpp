@@ -30,8 +30,8 @@ bool MovableShape::intersects(Shape * shapeType, RenderWindow* window)
 		Vector2f pointCoords = { getRadius() * cos(2 * PI * i / (shapeType->getPointCount())+30), getRadius() *sin(2 * PI * i / (shapeType->getPointCount())+30) };
 		shapePointPosition.emplace_back(pointCoords + Vector2f(mRadius / 1.5, mRadius / 1.5) + shapePosition);
 	}
-	drawRandomShit(window, shapePointPosition);
-	drawRandomShit(window, mShapePointPosition);
+	drawIntersectionPoints(window, shapePointPosition);
+	drawIntersectionPoints(window, mShapePointPosition);
 	for (auto& point : shapePointPosition)
 	{
 		if (isInside(mShapePointPosition, point))
@@ -62,7 +62,7 @@ bool MovableShape::intersects(vector<Shape*> shapeType, RenderWindow* window)
 	return false;
 }
 
-void MovableShape::drawRandomShit(RenderWindow * window, vector<Vector2f> shapePointPosition)
+void MovableShape::drawIntersectionPoints(RenderWindow * window, vector<Vector2f> shapePointPosition)
 {
 	for (auto& point : shapePointPosition)
 	{

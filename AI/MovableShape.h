@@ -20,7 +20,7 @@ public:
 	float getRadius();
 	bool intersects(Shape* shapeType, RenderWindow* window);
 	bool intersects(vector<Shape*> shapeType, RenderWindow* window);
-	void drawRandomShit(RenderWindow* window, vector<Vector2f> shapePointPosition);
+	void drawIntersectionPoints(RenderWindow* window, vector<Vector2f> shapePointPosition);
 	Shape* GetShapeType();
 	~MovableShape();
 
