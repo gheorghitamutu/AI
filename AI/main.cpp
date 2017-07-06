@@ -10,7 +10,7 @@ int main()
 {
 	sf::RenderWindow window(sf::VideoMode(1080, 720), "AI");
 	Event event;
-	Player p1( new CustomShape(50.f, 3));
+	Player p1( new CustomShape(50.f, 5));
 
 	EnemyContainer enemies;
 

@@ -1,9 +1,5 @@
 #include "CustomShape.h"
 
-CustomShape::CustomShape()
-{
-}
-
 CustomShape::CustomShape(float radius, int points)
 {
 	load(radius, points);
@@ -79,7 +75,7 @@ vector<Vector2f> CustomShape::getPolygonPoints()
 
 int CustomShape::getPointCount()
 {
-	return m_vertices.getVertexCount() - 1;
+	return m_vertices.getVertexCount() - 2;
 }
 
 Vector2f CustomShape::getPosition()

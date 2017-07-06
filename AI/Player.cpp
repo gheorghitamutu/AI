@@ -4,15 +4,15 @@ Player::Player(CustomShape * shapeType) : MovableShape(shapeType)
 {
 	mSpeed = 100;
 	setFillColor(sf::Color::Green);
-	setPosition({ (float)(100), (float)(400 / 2) });
+	setPosition({ (float)(100), (float)(600) });
 
-	/*for (int i = 0; i < mShapeType->getPointCount(); i++)
+	for (int i = 0; i < mShapeType->getPointCount(); i++)
 	{
-		Canon* canon = new Canon({ new CircleShape(10.f, 10), 10.f });
-		canon->setFillColor(sf::Color::Cyan);
-		canon->setOrigin({ canon->getRadius(), canon->getRadius() });
+		Canon* canon = new Canon(new CustomShape(15.f, 30));
+		canon->setFillColor(Color::Yellow);
+		canon->setOrigin({ canon->getRadius()/10.f, canon->getRadius()/8.f });
 		AddCanon(canon);
-	}*/
+	}
 }
 
 void Player::HandleInput(Event event)

@@ -2,7 +2,7 @@
 #include<iostream>
 #include "Canon.h"
 #include <math.h> 
-MovableShape::MovableShape(CustomShape* shapeType)
+MovableShape::MovableShape(CustomShape* shapeType) : CustomShape(shapeType->getSize(), shapeType->getPointCount())
 {
 	this->mShapeType = shapeType;
 }
@@ -24,8 +24,8 @@ bool MovableShape::intersects(CustomShape * shapeType, RenderWindow* window)
 	{
 		point += shapePosition;
 	}
-	drawIntersectionPoints(window, shapePointPosition);
-	drawIntersectionPoints(window, mShapePointPosition);
+	//drawIntersectionPoints(window, shapePointPosition);
+	//drawIntersectionPoints(window, mShapePointPosition);
 	for (auto& point : shapePointPosition)
 	{
 		if (isInside(mShapePointPosition, point))

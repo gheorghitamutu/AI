@@ -7,7 +7,6 @@ using namespace sf;
 class CustomShape : public sf::Drawable, public sf::Transformable
 {
 public:
-	CustomShape();
 	CustomShape(float radius, int points);
 	CustomShape(float radius, int points, Color color);
 	void setSize(float radius);
