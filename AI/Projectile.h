@@ -6,7 +6,7 @@ class Projectile :
 	public MovableShape
 {
 public:
-	Projectile(Shape * shapeType, float radius) : MovableShape(shapeType, radius) {};
+	Projectile(CustomShape * shapeType) : MovableShape(shapeType) {};
 	~Projectile();
 };
 

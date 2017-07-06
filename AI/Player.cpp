@@ -1,6 +1,6 @@
 #include "Player.h"
 
-Player::Player(Shape * shapeType, float radius) : MovableShape(shapeType, radius)
+Player::Player(CustomShape * shapeType) : MovableShape(shapeType)
 {
 	mSpeed = 100;
 	setFillColor(sf::Color::Green);
@@ -14,7 +14,6 @@ Player::Player(Shape * shapeType, float radius) : MovableShape(shapeType, radius
 		AddCanon(canon);
 	}*/
 }
-
 
 void Player::HandleInput(Event event)
 {
@@ -52,7 +51,7 @@ void Player::HandleInput(Event event)
 		}
 }
 
-void Player::checkCollision(vector<Shape*> shapeType, RenderWindow* window)
+void Player::checkCollision(vector<CustomShape*> shapeType, RenderWindow* window)
 {
 	if (intersects(shapeType, window))
 	{

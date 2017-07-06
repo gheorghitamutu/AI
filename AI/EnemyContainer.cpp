@@ -3,14 +3,14 @@
 
 EnemyContainer::EnemyContainer()
 {
-	Enemy* e1 = new Enemy({ new sf::CircleShape(50.f, 6), 10.f });
+	Enemy* e1 = new Enemy(new CustomShape(50.f, 3));
 	e1->setFillColor(sf::Color::Red);
-	e1->setOrigin({ e1->getRadius(), e1->getRadius() });
+	//e1->setOrigin({ e1->getRadius(), e1->getRadius() });
 	e1->setPosition({ (float)(800 / 2), (float)(600 / 2) });
 
-	Enemy* e2 = new Enemy({ new sf::CircleShape(50.f, 6), 10.f });
+	Enemy* e2 = new Enemy(new CustomShape(50.f, 6));
 	e2->setFillColor(sf::Color::Blue);
-	e2->setOrigin({ e1->getRadius(), e1->getRadius() });
+	//e2->setOrigin({ e1->getRadius(), e1->getRadius() });
 	e2->setPosition({ (float)(800 / 2 + 100), (float)(600 / 2) });
 
 	AddEnemy(e1);
@@ -31,9 +31,9 @@ void EnemyContainer::DrawEnemies(RenderWindow * window)
 }
 
 
-vector<Shape*> EnemyContainer::GetShapeType()
+vector<CustomShape*> EnemyContainer::GetShapeType()
 {
-	vector<Shape*> shapes;
+	vector<CustomShape*> shapes;
 	for (auto& enemy : this->enemies)
 	{
 		shapes.emplace_back(enemy->GetShapeType());

@@ -6,9 +6,9 @@ class Player :
 	public MovableShape
 {
 public:
-	Player(Shape* shapeType, float radius);
+	Player(CustomShape* shapeType);
 	void HandleInput(Event event);
-	void checkCollision(vector<Shape*> shapeType, RenderWindow* window);
+	void checkCollision(vector<CustomShape*> shapeType, RenderWindow* window);
 	~Player();
 private:
 	float mIncreaseSpeedBy = 1.0f;

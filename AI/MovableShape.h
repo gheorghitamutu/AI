@@ -6,12 +6,13 @@
 using namespace std;
 using namespace sf;
 
-class MovableShape : public CustomShape, public CircleShape, public RectangleShape, public ConvexShape
+class MovableShape : public CustomShape
 {
 public:
-	MovableShape(Shape* shapeType, float radius);
+	MovableShape(CustomShape* shapeType);
 	void setFillColor(Color color);
 	void setPosition(Vector2f position);
+	Vector2f getPosition();
 	void setOrigin(Vector2f position);
 	void draw(RenderWindow* window);
 	void Update();
@@ -19,21 +20,20 @@ public:
 	void SetSpeed(float speed);
 	void AddCanon(class Canon* canon);
 	float getRadius();
-	bool intersects(Shape* shapeType, RenderWindow* window);
-	bool intersects(vector<Shape*> shapeType, RenderWindow* window);
+	bool intersects(CustomShape* shapeType, RenderWindow* window);
+	bool intersects(vector<CustomShape*> shapeType, RenderWindow* window);
 	void drawIntersectionPoints(RenderWindow* window, vector<Vector2f> shapePointPosition);
-	Shape* GetShapeType();
+	CustomShape* GetShapeType();
 	~MovableShape();
 
 protected:
 	vector<class Canon*> mCanons;
-	Shape* mShapeType;
+	CustomShape* mShapeType;
 	Vector2f mVelocity;
 	Vector2f mDirection;
 	sf::Clock time;
 	float mDeltaTime = 0.0f;
 	float mSpeed;
-	float mRadius;
 	bool mCollision = false;
 	const float PI = 3.141592654f;
 private:

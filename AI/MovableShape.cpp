@@ -2,33 +2,27 @@
 #include<iostream>
 #include "Canon.h"
 #include <math.h> 
-MovableShape::MovableShape(Shape* shapeType, float radius)
+MovableShape::MovableShape(CustomShape* shapeType)
 {
 	this->mShapeType = shapeType;
-	this->mRadius = radius;
-	this->mShapeType->setOrigin(radius, radius);
 }
 
-bool MovableShape::intersects(Shape * shapeType, RenderWindow* window)
+bool MovableShape::intersects(CustomShape * shapeType, RenderWindow* window)
 {
 	auto mShapeCountPoints = this->mShapeType->getPointCount();
 	auto shapeCountPoints = shapeType->getPointCount();
 
 	auto mShapePosition = (Vector2f)mShapeType->getPosition();
 	auto shapePosition = (Vector2f)shapeType->getPosition();
-	vector<Vector2f> mShapePointPosition;
-	for (int i = 0; i < mShapeCountPoints; i++)
+	vector<Vector2f> mShapePointPosition = mShapeType->getPolygonPoints();
+	for (auto& point : mShapePointPosition)
 	{
-		Vector2f vertexPosition = { getRadius() * cos(2 * PI * i / (mShapeType->getPointCount())+30), getRadius() *sin(2 * PI * i / (mShapeType->getPointCount()) + 30) };
-		//sf::Vector2f vertexPosition = mShapeType->getTransform().transformPoint(mShapeType->m_vertices[i].position);
-		auto point = vertexPosition + mShapePosition + (Vector2f)(mVelocity*mDeltaTime);
-		mShapePointPosition.emplace_back(point);
+		point += mShapePosition + mVelocity*mDeltaTime;
 	}
-	vector<Vector2f> shapePointPosition;
-	for (int i = 0; i < shapeCountPoints; i++)
+	vector<Vector2f> shapePointPosition = shapeType->getPolygonPoints();
+	for (auto& point : shapePointPosition)
 	{
-		Vector2f pointCoords = { getRadius() * cos(2 * PI * i / (shapeType->getPointCount())+30), getRadius() *sin(2 * PI * i / (shapeType->getPointCount())+30) };
-		shapePointPosition.emplace_back(pointCoords + Vector2f(mRadius / 1.5, mRadius / 1.5) + shapePosition);
+		point += shapePosition;
 	}
 	drawIntersectionPoints(window, shapePointPosition);
 	drawIntersectionPoints(window, mShapePointPosition);
@@ -50,7 +44,7 @@ bool MovableShape::intersects(Shape * shapeType, RenderWindow* window)
 	return false;
 }
 
-bool MovableShape::intersects(vector<Shape*> shapeType, RenderWindow* window)
+bool MovableShape::intersects(vector<CustomShape*> shapeType, RenderWindow* window)
 {
 	for (auto& shape : shapeType)
 	{
@@ -83,6 +77,11 @@ void MovableShape::setPosition(Vector2f position)
 	mShapeType->setPosition(position);
 }
 
+Vector2f MovableShape::getPosition()
+{
+	return mShapeType->getPosition();
+}
+
 void MovableShape::setOrigin(Vector2f position)
 {
 	mShapeType->setOrigin(position);
@@ -90,7 +89,7 @@ void MovableShape::setOrigin(Vector2f position)
 
 float MovableShape::getRadius()
 {
-	return mRadius;
+	return this->mShapeType->getSize();
 }
 
 void MovableShape::draw(RenderWindow * window)
@@ -141,7 +140,7 @@ void MovableShape::AddCanon(Canon * canon)
 	this->mCanons.emplace_back(canon);
 }
 
-Shape* MovableShape::GetShapeType()
+CustomShape* MovableShape::GetShapeType()
 {
 	return mShapeType;
 }

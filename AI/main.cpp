@@ -2,11 +2,15 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "EnemyContainer.h"
+#include "CustomShape.h"
+using namespace std;
+using namespace sf;
+
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(1080, 720), "AI");
 	Event event;
-	Player p1({ new sf::CircleShape(50.f, 3), 50.f });
+	Player p1( new CustomShape(50.f, 3));
 
 	EnemyContainer enemies;
 

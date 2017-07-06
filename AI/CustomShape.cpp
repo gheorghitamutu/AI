@@ -15,7 +15,12 @@ CustomShape::CustomShape(float radius, int points, Color color)
 
 }
 
-void CustomShape::SetColor(Color color)
+void CustomShape::setSize(float radius)
+{
+	mRadius = radius;
+}
+
+void CustomShape::setFillColor(Color color)
 {
 	for (int i = 0; i<m_vertices.getVertexCount(); i++)
 	{
@@ -23,9 +28,9 @@ void CustomShape::SetColor(Color color)
 	}
 }
 
-
 bool CustomShape::load(float radius, int points)
 {
+	mRadius = radius;
 	m_vertices.setPrimitiveType(TriangleFan);
 	// [0] - origin, [size-1] - same point with [1] but we need to close the polygon
 	m_vertices.resize(points + 2);
@@ -40,8 +45,8 @@ bool CustomShape::load(float radius, int points)
 	}
 
 	// define the color of the polygon's points
-	SetColor(Color(255, 255, 255));
-
+	setFillColor(Color(255, 255, 255));
+	Transformable::setOrigin(mRadius, mRadius);
 	return true;
 }
 
@@ -57,7 +62,12 @@ void CustomShape::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	target.draw(m_vertices, states);
 }
 
-vector<Vector2f> CustomShape::polygonPoint()
+float CustomShape::getSize()
+{
+	return mRadius;
+}
+
+vector<Vector2f> CustomShape::getPolygonPoints()
 {
 	vector<Vector2f> polygonPoint;
 	for (int i = 1; i < m_vertices.getVertexCount() - 1; i++)
@@ -65,6 +75,16 @@ vector<Vector2f> CustomShape::polygonPoint()
 		polygonPoint.emplace_back(m_vertices[i].position);
 	}
 	return polygonPoint;
+}
+
+int CustomShape::getPointCount()
+{
+	return m_vertices.getVertexCount() - 1;
+}
+
+Vector2f CustomShape::getPosition()
+{
+	return Transformable::getPosition() - Vector2f(mRadius, mRadius);
 }
 
 CustomShape::~CustomShape()

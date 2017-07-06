@@ -8,7 +8,7 @@ public:
 	EnemyContainer();
 	void AddEnemy(Enemy* enemy);
 	void DrawEnemies(RenderWindow* window);
-	vector<Shape*> GetShapeType();
+	vector<CustomShape*> GetShapeType();
 	~EnemyContainer();
 private:
 	vector<Enemy*> enemies;

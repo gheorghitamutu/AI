@@ -4,7 +4,7 @@ class Enemy :
 	public MovableShape
 {
 public:
-	Enemy(Shape* shapeType, float radius) : MovableShape(shapeType, radius) {};
+	Enemy(CustomShape* shapeType) : MovableShape(shapeType) {};
 	~Enemy();
 };
 

@@ -6,7 +6,7 @@ using namespace sf;
 class Canon : public MovableShape
 {
 public:
-	Canon(Shape * shapeType, float radius) : MovableShape(shapeType, radius) {};
+	Canon(CustomShape * shapeType) : MovableShape(shapeType) {};
 	void DrawCanon(RenderWindow* window);
 
 	~Canon();
