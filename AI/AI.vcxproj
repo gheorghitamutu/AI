@@ -112,6 +112,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Canon.cpp" />
+    <ClCompile Include="CustomShape.cpp" />
     <ClCompile Include="MovableShape.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyContainer.cpp" />
@@ -121,6 +122,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Canon.h" />
+    <ClInclude Include="CustomShape.h" />
     <ClInclude Include="MovableShape.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyContainer.h" />

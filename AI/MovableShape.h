@@ -2,10 +2,11 @@
 #include <SFML/Graphics.hpp>
 #include <utility>
 #include <vector>
+#include "CustomShape.h"
 using namespace std;
 using namespace sf;
 
-class MovableShape : public CircleShape, public RectangleShape, public ConvexShape
+class MovableShape : public CustomShape, public CircleShape, public RectangleShape, public ConvexShape
 {
 public:
 	MovableShape(Shape* shapeType, float radius);
